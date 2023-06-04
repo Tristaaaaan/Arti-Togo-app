@@ -1,0 +1,139 @@
+# Cheng - Step 2
+<ChengWindow2>:
+    name: "cheng2"
+    pd: pd
+    pf: pf
+    pg: pg
+    bcx1: bcx1
+    fx1: fx1
+    bcrc1: bcrc1
+    frc1: frc1
+
+    # Main Frame
+    MDBoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.9, .95
+        pos_hint: {'center_x': 0.50, 'center_y': 0.50}
+
+        MDIconButton:
+            icon: 'chevron-left'
+            theme_text_color: 'Custom'
+            text_color: 'gray'
+            on_release:
+                app.root.current = "third"
+                root.manager.transition.direction = "right"
+        MDLabel:
+            text: "STEP 2"
+            text_color: "gray"
+            valign: 'middle'
+            theme_text_color: 'Custom'
+            font_style: 'H6'
+        MDLabel:
+            text: "Calculation of Coordinate"
+            text_color: "black"
+            theme_text_color: 'Custom'
+            font_style: 'Body1'
+
+        MDTextField:
+            id: pd
+            mode: "rectangle"
+            hint_text: "Pd"
+        MDTextField:
+            id: pf
+            mode: "rectangle"
+            hint_text: "Pf"
+        MDTextField:
+            id: pg
+            mode: "rectangle"
+            hint_text: "Pg"
+
+        # Outputs  
+        MDBoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'center_x': 0.50, 'center_y': 0.50}
+            MDLabel:
+                text: "BCX1"
+                bold: "True"
+                font_style: "Body1"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: [20/255, 20/255, 20/255, 1]
+            MDLabel:
+                id: bcx1
+                font_style: "Caption"
+                color_mode: 'custom'
+                halign: "center"
+                line_color_focus: 0, 0, 0, 1
+                line_color_normal: 0, 0, 0, 1
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: "FX1"
+                bold: "True"
+                halign: "center"
+                font_style: "Body1"
+                theme_text_color: "Custom"
+                text_color: [20/255, 20/255, 20/255, 1]
+            MDLabel:
+                id: fx1
+                font_style: "Caption"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                md_bg_color: .119, .136, .153, 1
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: "BCRC1"
+                bold: "True"
+                font_style: "Body1"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: [20/255, 20/255, 20/255, 1]
+            MDLabel:
+                id: bcrc1
+                font_style: "Caption"
+                color_mode: 'custom'
+                halign: "center"
+                line_color_focus: 0, 0, 0, 1
+                line_color_normal: 0, 0, 0, 1
+        MDBoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: "FRC1"
+                bold: "True"
+                font_style: "Body1"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: [20/255, 20/255, 20/255, 1]
+            MDLabel:
+                id: frc1
+                font_style: "Caption"
+                color_mode: 'custom'
+                halign: "center"
+                line_color_focus: 0, 0, 0, 1
+                line_color_normal: 0, 0, 0, 1
+
+        # Button
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            MDIconButton:
+                icon: "refresh"
+                pos_hint: {'center_y': .5}
+                theme_text_color: "Custom"
+                text_color: [46/255, 112/255, 220/255, 1]
+               # on_release:
+                    #app.root.current = "second"
+                   # root.manager.transition.direction = "right"
+            MDFlatButton:
+                text: "Proceed"
+                font_name: "RobotoMedium"
+                size_hint_x: 0.9
+                pos_hint: {'center_y': .5}
+                theme_text_color: 'Custom'
+                text_color: [1, 1, 1, 1]
+                md_bg_color: [46/255, 112/255, 220/255, 1]
+                on_release:
+                    root.validate_change_step2()

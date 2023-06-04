@@ -1,0 +1,65 @@
+# Third Window
+
+<ElementCard2@MDCard>:
+    padding:dp(15)
+    spacing:dp(15)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_style:"H6"
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            text:root.items_count
+
+<ThirdWindow>:
+    name: "third"
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: 20
+
+        MDTopAppBar:
+            title: "MDTopAppBar"
+        MDGridLayout:
+            size_hint_y:.75
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            ElementCard2:
+                image:"./images/axis.png"
+                text:"Coordinate"
+                subtext:"Calculation of Coordinate"
+                on_release: 
+                    app.root.current = "coor"
+                    root.manager.transition.direction = "left"
+
+            ElementCard2:
+                image:"./images/distance.png"
+                text:"Distance"
+                subtext:"Calculation of Distance" 
+                on_release: 
+                    app.root.current = "dist"
+                    root.manager.transition.direction = "left"
+
+            ElementCard2:
+                image:"./images/change.png"
+                text:"Change"
+                subtext:"Calculation of Change"
+                on_release:
+                    app.root.current = "cheng1"
+                    root.manager.transition.direction = "left"

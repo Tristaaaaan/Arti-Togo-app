@@ -1,0 +1,56 @@
+# Second Window
+
+<ElementCard@MDCard>:
+    md_bg_color:69/255,55/255,86/255,1
+    padding:dp(15)
+    spacing:dp(15)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_style:"H6"
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            text:root.items_count
+
+<SecondWindow>:
+    name: "second"
+    md_bg_color: 56/255,40/255,81/255,1
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: 2
+
+        MDTopAppBar:
+            title: "MDTopAppBar"
+        MDGridLayout:
+            size_hint_y:.75
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            ElementCard:
+                image:"./images/calendar.png"
+                text:"Menu"
+                subtext:"March, Wednesday"
+                on_release:
+                    app.root.current = "third"
+                    root.manager.transition.direction = "left"
+
+            ElementCard:
+                image:"./images/food.png"
+                text:"Button"
+                subtext:"Broccoli, Apple"
