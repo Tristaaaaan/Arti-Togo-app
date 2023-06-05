@@ -15,16 +15,19 @@
             right_action_items: [["dots-vertical", lambda x: root.show_options()]]
 
     MDBoxLayout:
-        padding: 20
-        spacing: 20
+        size_hint: .8, .9
+        pos_hint: {'center_x': .5, 'center_y': .5}
         orientation: 'vertical'
-        
-        MDBoxLayout:
-            # padding: 20
-            adaptive_height: True
+        spacing: 10
 
+        # Checkbox
+        MDBoxLayout:
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            orientation: 'horizontal'
+            size_hint_y: .1
             MDBoxLayout:
                 orientation: 'horizontal'
+                pos_hint: {'center_x': .5, 'center_y': .5}
                 size_hint_y: .1
                 spacing: 5
                 Check:
@@ -38,11 +41,14 @@
                 MDLabel:
                     text: 'Deg'
                     size_hint_x: None
+                    pos_hint: {'center_x': .5, 'center_y': .5}
                     font_style: "Caption"
 
             MDBoxLayout:
                 orientation: 'horizontal'
                 size_hint_y: .1
+                pos_hint: {'center_x': .5, 'center_y': .5}
+
                 spacing: 5
                 Check:
                     pos_hint: {'center_x': .5, 'center_y': .5}
@@ -50,72 +56,104 @@
                         self.active = True if self.active else not self.active
                 MDLabel:
                     text: 'Mil'
+                    pos_hint: {'center_x': .5, 'center_y': .5}
                     font_style: "Caption"
                     size_hint_x: None
 
+        # TextFields
         MDBoxLayout:
-            adaptive_height: True
-            size_hint_y: 1
+            orientation: 'vertical'
+            spacing: 10
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            size_hint_y: .4
             MDBoxLayout:
-                orientation: 'vertical'
-                spacing: 5
-                MDBoxLayout:
-                    # adaptive_height: True
-                    orientation: 'horizontal'
-                    spacing: 8
-                    MDTextField:
-                        id: Xa
-                        mode: "rectangle"
-                        input_filter: "float"
-                        hint_text: "Xa"
-                    MDTextField:
-                        id: Ya
-                        mode: "rectangle"
-                        input_filter: "float"
-                        hint_text: "Ya"
+                orientation: 'horizontal'
+                spacing: 8
+                size_hint_y: .1
+                MDTextField:
+                    id: Xa
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "Xa"
 
-                MDBoxLayout:
-                    # adaptive_height: True
-                    orientation: 'horizontal'
-                    spacing: 8
-                    MDTextField:
-                        id: Ha
-                        mode: "rectangle"
-                        input_filter: "float"
-                        hint_text: "Ha"
-                    MDTextField:
-                        id: aab
-                        mode: "rectangle"
-                        input_filter: "float"
-                        hint_text: "aab"
+                MDTextField:
+                    id: Ya
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "Ya"
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: 8
+                size_hint_y: .1
 
-                MDBoxLayout:
-                    # adaptive_height: True
-                    spacing: 8
-                    orientation: 'horizontal'
-                    MDTextField:
-                        id: Dab
-                        mode: "rectangle"
-                        input_filter: "float"
-                        hint_text: "Dab"
-                    MDTextField:
-                        id: e
-                        mode: "rectangle"
-                        input_filter: "float"
-                        hint_text: "e"
-        
+                MDTextField:
+                    id: Ha
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "Ha"
+
+                MDTextField:
+                    id: aab
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "aab"
+            MDBoxLayout:
+                spacing: 8
+                size_hint_y: .1
+
+                orientation: 'horizontal'
+                MDTextField:
+                    id: Dab
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "Dab"
+
+                MDTextField:
+                    id: e
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "e"
+
+        # Outputs
         MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': .8}
+
+            size_hint_y: .4
+            spacing: 8
+    
+            MDTextField:
+                id: result_Xb
+                mode: "rectangle"
+                input_filter: "float"
+                hint_text: "Xb"
+                disabled: True
+    
+            MDTextField:
+                id: result_Yb
+                mode: "rectangle"
+                input_filter: "float"
+                hint_text: "Yb"
+                disabled: True
+        
+            MDTextField:
+                id: result_Hb
+                mode: "rectangle"
+                input_filter: "float"
+                hint_text: "Hb"
+                disabled: True
+
+        # Buttons
+        MDBoxLayout:
+            orientation: 'horizontal'
             spacing: 15
-            pos_hint: {'center_x': .5, 'top_y': 1}
+            pos_hint: {'center_x': .5, 'center_y': 5}
             size_hint_y: .1
             RectangularElevationButton:
                 id: effacer
                 md_bg_color: (188/255,0,0,1)
-                # elevation: 4
-                # shadow_offset: 0, 6
-                # size_hint_x: .3
-                # size_hint_y: .2
-                # radius: 13
+            
+
                 canvas.before:
                     Color:
                         rgba: 0,0,0,1
@@ -134,15 +172,12 @@
                     font_size: 20
                     text: "Effacer"
                     on_release: root.clear_fields()
-
+            
             RectangularElevationButton:
                 id: validation
                 md_bg_color: (0,188/255,0,1)
-                # elevation: 4
-                # shadow_offset: 0, 6
-                # size_hint_x: .3
-                # size_hint_y: .2
-                # radius: 13
+            
+
                 canvas.before:
                     Color:
                         rgba: 0,0,0,1
@@ -151,9 +186,7 @@
                         rectangle: (self.x, self.y, self.width, self.height)
                 Button:
                     background_normal: 'button_background.png'
-                    # background_down: ''
-                    # background_color: (0,0,0,0)
-                    # color: 1,1,1,1
+        
                     color: 0,0,0,1
                     pos: validation.pos
                     size: validation.size
@@ -165,11 +198,8 @@
             RectangularElevationButton:
                 id: retour
                 md_bg_color: (0,0,0,1)
-                # elevation: 4
-                # shadow_offset: 0, 6
-                # size_hint_x: .3
-                # size_hint_y: .2
-                # radius: 13
+            
+
                 canvas.before:
                     Color:
                         rgba: 0,0,0,1
@@ -188,69 +218,4 @@
                     font_size: 20
                     text: "Retour"
                     on_release: root.return_to_home()
-
-            # MDFillRoundFlatButton:
-            #     font_size: 20
-            #     text: "Valider"
-            #     md_bg_color: (0,188/255,0,1)
-            #     on_release: root.validate('+')
-
-            # MDFillRoundFlatButton:
-            #     font_size: 20
-            #     text: "Retour"
-            #     # md_bg_color: (0,0,0,1)
-            #     source: 'assets/button.png'
-            #     allow_stretch: True
-            #     on_release: root.return_to_home()
-
-        GridLayout:
-            cols: 2
-            size_hint_y: .9
-            MDBoxLayout:
-                Label:
-                    text: 'Xb ='
-                    # font_size: 25
-                    size_hint_x: .3
-                    color: 0,0,1,1
-                    bold: True
-
-                Label:
-                    id: result_Xb
-                    text: ""
-                    input_filter: "float"
-                    # font_size: 17
-                    color: 0,0,1,1
-                    bold:True
-
-            MDBoxLayout:
-                Label:
-                    text: 'Yb ='
-                    # font_size: 25
-                    size_hint_x: .3
-                    color: 0,0,1,1
-                    bold:True
-
-                Label:
-                    id: result_Yb
-                    text: ""
-                    input_filter: "float"
-                    # font_size: 17
-                    color: 0,0,1,1
-                    bold:True
-
-            MDBoxLayout:
-                Label:
-                    text: 'Hb ='
-                    # font_size: 25
-                    size_hint_x: .3
-                    color: 1,0,0,1
-                    bold:True
-
-                Label:
-                    id: result_Hb
-                    text: ""
-                    input_filter: "float"
-                    # font_size: 17
-                    color: 1,0,0,1
-                    bold:True
 
