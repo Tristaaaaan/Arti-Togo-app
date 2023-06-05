@@ -1,3 +1,8 @@
+<Check@MDCheckbox>:
+    group: 'group1'
+    size_hint: None, None
+    size: dp(48), dp(48)
+    
 <CoordonneeWidget>:
     orientation: 'vertical'
 
@@ -13,117 +18,91 @@
         padding: 20
         spacing: 20
         orientation: 'vertical'
+        
         MDBoxLayout:
             # padding: 20
             adaptive_height: True
-            MDBoxLayout:
-                Label:
-                    text: "Degree"
-                    halign: 'right'
-                    color: 0,0,0,1
-                CheckBox:
-                    id: degree_checkbox
-                    group: "radio_buttons"
-                    size_hint_x: .2
-                    on_active: root.check_aab_value()
-            
-            MDBoxLayout:
-                CheckBox:
-                    id: mil_checkbox
-                    group: "radio_buttons"
-                    size_hint_x: .2
-                    active: True
 
-                Label:
-                    text: "Mil"
-                    halign: 'left'
-                    color: 0,0,0,1
+            MDBoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: .1
+                spacing: 5
+                Check:
+                    id: degree_checkbox
+                    active: True
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    on_release: 
+                        self.active = True if self.active else not self.active
+                        root.check_aab_value()
+
+                MDLabel:
+                    text: 'Deg'
+                    size_hint_x: None
+                    font_style: "Caption"
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: .1
+                spacing: 5
+                Check:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    on_release:
+                        self.active = True if self.active else not self.active
+                MDLabel:
+                    text: 'Mil'
+                    font_style: "Caption"
+                    size_hint_x: None
+
         MDBoxLayout:
             adaptive_height: True
-            GridLayout:
-                cols: 3
+            size_hint_y: 1
+            MDBoxLayout:
+                orientation: 'vertical'
                 spacing: 5
                 MDBoxLayout:
                     # adaptive_height: True
-                    Label:
-                        text: 'Xa ='
-                        # font_size: 25
-                        size_hint_x: .3
-                        color: 0,0,0,1
-
-                    DataInput:
+                    orientation: 'horizontal'
+                    spacing: 8
+                    MDTextField:
                         id: Xa
+                        mode: "rectangle"
                         input_filter: "float"
-                        # font_size: 17
-
-                MDBoxLayout:
-                    # adaptive_height: True
-                    Label:
-                        text: 'Ya ='
-                        # font_size: 25
-                        size_hint_x: .3
-                        color: 0,0,0,1
-
-                    DataInput:
+                        hint_text: "Xa"
+                    MDTextField:
                         id: Ya
+                        mode: "rectangle"
                         input_filter: "float"
-                        # font_size: 17
+                        hint_text: "Ya"
 
                 MDBoxLayout:
                     # adaptive_height: True
-                    Label:
-                        text: 'Ha ='
-                        # font_size: 25
-                        size_hint_x: .3
-                        color: 0,0,0,1
-
-                    DataInput:
+                    orientation: 'horizontal'
+                    spacing: 8
+                    MDTextField:
                         id: Ha
+                        mode: "rectangle"
                         input_filter: "float"
-                        # font_size: 17
-
-                MDBoxLayout:
-                    # adaptive_height: True
-                    Label:
-                        text: 'aab ='
-                        # font_size: 25
-                        size_hint_x: .3
-                        color: 0,0,0,1
-
-                    DataInput:
+                        hint_text: "Ha"
+                    MDTextField:
                         id: aab
+                        mode: "rectangle"
                         input_filter: "float"
-                        # font_size: 17
-                        on_text: root.limit_data_input_range(self)
+                        hint_text: "aab"
 
                 MDBoxLayout:
                     # adaptive_height: True
-                    Label:
-                        text: 'Dab ='
-                        # font_size: 25
-                        size_hint_x: .3
-                        color: 0,0,0,1
-
-                    DataInput:
+                    spacing: 8
+                    orientation: 'horizontal'
+                    MDTextField:
                         id: Dab
+                        mode: "rectangle"
                         input_filter: "float"
-                        # font_size: 17
-
-                MDBoxLayout:
-                    # adaptive_height: True
-                    Label:
-                        text: 'e ='
-                        # font_size: 25
-                        size_hint_x: .3
-                        color: 0,0,0,1
-
-                    DataInput:
+                        hint_text: "Dab"
+                    MDTextField:
                         id: e
-                        text: "0"
+                        mode: "rectangle"
                         input_filter: "float"
-                        # font_size: 17
-
-
+                        hint_text: "e"
         
         MDBoxLayout:
             spacing: 15
