@@ -1,3 +1,26 @@
+<ElementCard@MDCard>:
+    padding:dp(10)
+    spacing:dp(5)
+    radius:dp(25)
+    ripple_behavior: True
+    image: ''
+    text: ''
+    subtext: ''
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_style:"H6"
+        MDLabel:
+            halign:"center"
+            text:root.subtext
+            font_style:"Caption"
+
+            
 <Menu_Widget>:
     orientation: 'vertical'
 
@@ -16,10 +39,11 @@
 
         GridLayout:
             cols: 2
-            rows: 12
+            rows: 8
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
             row_force_default: True
-            row_default_height: 150
-            spacing: 10
+            row_default_height: 200
 
             # MDBoxLayout:
             #     orientation: 'vertical'
@@ -38,30 +62,14 @@
             #         size_hint_y: .1
             #         halign: 'center'
 
-            RectangularElevationButton:
-                pos_hint: {'center_x':.5, 'center_y':.5}
+            ElementCard:
                 id: open_coordonnate
-                md_bg_color: (0,0,0,1)
-                size_hint_x: .3
-                size_hint_y: .2
-                canvas.before:
-                    Color:
-                        rgba: 0,0,0,1
-                    Line:
-                        width: 1
-                        rectangle: (self.x, self.y, self.width, self.height)
-                Button:
-                    background_normal: 'button_background.png'
-                    color: 0,0,0,1
-                    pos: open_coordonnate.pos
-                    size: open_coordonnate.size
-                    halign: 'center'
-                    font_size: 20
-                    text: "COORDONNEE"
-                    on_release: root.open_coordonnate()
-            
-            
-            
+                image:"./assets/axis.png"
+                text: "Coordonnee"
+                subtext: 'Calculation of Coordonnee'
+                on_release: 
+                    root.open_coordonnate()
+
             # MDBoxLayout:
             #     orientation: 'vertical'
             #     spacing: 10
@@ -79,27 +87,13 @@
             #         size_hint_y: .1
             #         halign: 'center'
 
-            RectangularElevationButton:
-                pos_hint: {'center_x':.5, 'center_y':.5}
+            ElementCard:
                 id: open_distance
-                md_bg_color: (0,0,0,1)
-                size_hint_x: .3
-                size_hint_y: .2
-                canvas.before:
-                    Color:
-                        rgba: 0,0,0,1
-                    Line:
-                        width: 1
-                        rectangle: (self.x, self.y, self.width, self.height)
-                Button:
-                    background_normal: 'button_background.png'
-                    color: 0,0,0,1
-                    pos: open_distance.pos
-                    size: open_distance.size
-                    halign: 'center'
-                    font_size: 20
-                    text: "DISTANCE"
-                    on_release: root.open_distance()
+                image:"./assets/distance.png"
+                text: "Distance"
+                subtext: 'Calculation of Distance'
+                on_release: 
+                    root.open_distance()
 
             # MDBoxLayout:
             #     orientation: 'vertical'
@@ -118,24 +112,13 @@
             #         text: 'CHENG'
             #         size_hint_y: .1
             #         halign: 'center'
-            RectangularElevationButton:
-                pos_hint: {'center_x':.5, 'center_y':.5}
-                id: open_cheng
-                md_bg_color: (0,0,0,1)
-                size_hint_x: .3
-                size_hint_y: .2
-                canvas.before:
-                    Color:
-                        rgba: 0,0,0,1
-                    Line:
-                        width: 1
-                        rectangle: (self.x, self.y, self.width, self.height)
-                Button:
-                    background_normal: 'button_background.png'
-                    color: 0,0,0,1
-                    pos: open_cheng.pos
-                    size: open_cheng.size
-                    halign: 'center'
-                    font_size: 20
-                    text: "CHENG"
-                    on_release: root.open_cheng()
+
+            ElementCard:
+                id: open_distance
+                image:"./assets/distance.png"
+                text: "Cheng"
+                subtext: 'Calculation of Cheng'
+                on_release: 
+                    root.open_cheng()
+
+
