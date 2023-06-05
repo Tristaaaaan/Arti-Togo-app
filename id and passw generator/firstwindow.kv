@@ -1,0 +1,97 @@
+# First Window
+<FirstWindow>:
+    name: "first"
+    user_id: user_id
+    user_password: 
+    generated: generated
+    MDBoxLayout:
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        size_hint: .8, .9
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            spacing: 8
+            MDBoxLayout:
+                size_hint: 1, .4
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                Image:
+                    source: './assets/logo.png'
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    size_hint: 1, .6
+                    size: 512, 512
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: .15
+                spacing: 5
+                MDLabel:
+                    text: "Good Day!"
+                    color: 'black'
+                    font_style: 'H5'
+                MDLabel:
+                    text: "To obtain User ID and Password. Click the button below."
+                    color: 'gray'
+                    font_style: 'Caption'
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: .3
+                spacing: 5
+                MDTextField:
+                    id: user_id
+                    disabled: True
+                    mode: "rectangle"
+                    hint_text: "User ID"
+                MDTextField:
+                    id: user_password
+                    disabled: True
+                    mode: "rectangle"
+                    hint_text: "Password"
+            MDLabel:
+                id: generated
+                color: [0, 0, 0, 1]
+                font_style: 'Subtitle2'
+                size_hint: 1,  .15
+                height: dp(35)
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                padding_x: dp(15)
+            MDBoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1, .2
+                spacing: 10
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                MDIconButton
+                    icon: "refresh"
+                    pos_hint: {'center_y': 0.5}
+                    on_release:
+                        root.clear()
+                MDIconButton:
+                    icon: "content-copy"
+                    size_hint: None, None
+                    pos_hint: {'center_y': .5}
+                    on_release:
+                        root.copy()
+                RectangularElevationButton:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    id: retour
+                    md_bg_color: (0, 0, 0, 1)
+                    size_hint: .7, .4
+
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                        Line:
+                            width: 1
+                            rectangle: (self.x, self.y, self.width, self.height)
+                        RoundedRectangle:
+                            pos: self.x, self.y
+                            size: self.size
+                    Button:
+                        background_normal: 'button_background.png'
+                        color: 0, 0, 0, 1
+                        pos: retour.pos
+                        size: retour.size
+                        halign: 'center'
+                        font_size: 20
+                        text: "Generate"
+                        on_release: 
+                            root.generate()    
+
