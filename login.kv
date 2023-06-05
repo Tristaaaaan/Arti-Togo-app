@@ -1,0 +1,87 @@
+<ClickableTextField>
+    passw: passw
+    MDTextField:
+        id: passw
+        password: True
+        hint_text: "Password"
+        mode: "rectangle"
+        font_size: "15dp"
+    MDIconButton:
+        icon: "eye-off"
+        ripple_scale: 0
+        pos_hint: {"right": 0.99}
+        pos: passw.width - self.width + dp(8), 0
+        on_release:
+            self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+            passw.password = False if passw.password is True else True
+
+<LoginPage>:
+    name: 'LoginPage'
+    user_id: user_id
+    MDBoxLayout:
+        pos_hint: {'center_x': .5, 'center_y': .6}
+        size_hint: .8, .8
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            spacing: 10
+            MDBoxLayout:
+                size_hint: 1, .4
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                Image:
+                    source: './assets/logo.png'
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    size_hint: 1, .6
+                    size: 512, 512
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: .1
+                MDLabel:
+                    text: "Login"
+                    color: 'black'
+                    font_style: 'H5'
+                MDLabel:
+                    text: "Please sign in to continue"
+                    color: 'gray'
+                    font_style: 'Caption'
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: .2
+                MDTextField:
+                    id: user_id
+                    mode: "rectangle"
+                    hint_text: "User ID"
+                ClickableTextField:
+                    id: user_password
+            MDLabel:
+                id: error_label
+                color: [217/255, 83/255, 95/255, 1]
+                font_style: 'Subtitle2'
+                size_hint_y: None
+                height: dp(35)
+                size_hint_x: 1
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                padding_x: dp(15)
+                
+            RectangularElevationButton:
+                id: retour
+                md_bg_color: (0, 0, 0, 1)
+                size_hint_y: 0.06
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                    RoundedRectangle:
+                        pos: self.x, self.y
+                        size: self.size
+                Button:
+                    background_normal: 'button_background.png'
+                    color: 0, 0, 0, 1
+                    pos: retour.pos
+                    size: retour.size
+                    halign: 'center'
+                    font_size: 20
+                    text: "LOGIN"
+                    on_release: root.login(user_password.passw.text)    
