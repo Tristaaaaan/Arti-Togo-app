@@ -133,7 +133,6 @@ class ArtiCalculatrice(MDApp):
     # Go to the previous screen
 
     def go_to_previous(self, root):
-        # User ID: 53399852 Password: 3f2bb1512d2
         root.clear_fields()
         if self.screens_manager.previous() != 'LoginPage':
             self.screens_manager.current = self.screens_manager.previous()
