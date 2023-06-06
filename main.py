@@ -21,13 +21,6 @@ import distance  # importing the file containing the calcul distance
 import Menu
 import cheng
 import login
-from database import Database
-from generateid import UserID
-from pwd_generator import Password
-
-password_generate = Password()
-id_generate = UserID()
-db = Database()
 
 
 class RectangularElevationButton(

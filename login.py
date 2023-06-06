@@ -4,6 +4,11 @@ from kivymd.uix.behaviors import BackgroundColorBehavior, \
     CommonElevationBehavior, RectangularRippleBehavior
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.clock import Clock
+from database import Database
+from pwd_generator import Password
+
+password_generate = Password()
+db = Database()
 
 
 class RectangularElevationButton(
@@ -20,12 +25,12 @@ class RectangularElevationButton(
 
 class LoginPage(Screen):
 
-    def login(self, password):
-        if self.check_password(password):
+    def login(self, username, password):
+        if self.check_password(username, password):
             app = MDApp.get_running_app()
             app.root.current = 'Accueil'
         else:
-            self.ids.error_label.text = 'Incorrect password'
+            self.ids.error_label.text = 'Incorrect User ID or Password.'
             self.ids.error_label.md_bg_color = (254/255, 219/255, 223/255, 1)
             self.ids.user_password.text = ''
 
@@ -35,11 +40,20 @@ class LoginPage(Screen):
         self.ids.error_label.md_bg_color = (1, 1, 1, 1)
         self.ids.error_label.text = ''
 
-    def check_password(self, password):
-        # the method will return True if the password is correcte, False otherwise
-        with open('password_storage.txt', 'r') as pwd_storage:
-            pwd = pwd_storage.readline()
-            if password == pwd:
+    def check_password(self, username, password):
+        if len(db.allAcc()) == 0:
+
+            self.user_password = password_generate.generate_passw(username)
+
+            # Status Log In
+            if self.user_password == password:
+                db.storeAcc(self.ids.user_id.text,
+                            self.user_password)
                 return True
-            else:
-                return False
+
+        else:
+            # Generate Password
+            self.user_password = password_generate.generate_passw(username)
+            if self.user_password == password:
+
+                return True

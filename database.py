@@ -13,18 +13,17 @@ class Database:
 
         self.users.execute("""CREATE TABLE IF NOT EXISTS users (
             user_id TEXT NOT NULL,
-            password TEXT NOT NULL,
-            status TEXT NOT NULL)
+            password TEXT NOT NULL
+            )
             """)
 
         self.data_con.commit()
 
-    def storeAcc(self, user, passw, stat):
+    def storeAcc(self, user, passw):
 
-        self.users.execute("INSERT into users (user_id, password, status) values(?, ?, ?)", (
+        self.users.execute("INSERT into users (user_id, password) values(?, ?)", (
             user,
-            passw,
-            stat
+            passw
         ))
 
         self.data_con.commit()
@@ -41,8 +40,6 @@ class Database:
         self.users.execute("SELECT password FROM users")
 
         verify_password = self.users.fetchone()[0]
-        print(verify_password)
-        print(passw)
         # Matching the hashed entered password to the stored hashed password
         if passw == verify_password:
             return True
