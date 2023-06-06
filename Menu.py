@@ -11,11 +11,6 @@ from kivymd.uix.behaviors import BackgroundColorBehavior, \
 from kivy.uix.behaviors import ButtonBehavior
 
 
-
-Window.clearcolor = 1, 1, 1, 1  # setting the window color
-Window.size = (500, 700)  # setting the initial size of the window
-
-
 class RectangularElevationButton(
     ButtonBehavior,
     RectangularRippleBehavior,
@@ -28,9 +23,7 @@ class RectangularElevationButton(
     pass
 
 
-
 class Menu_Widget(BoxLayout):
-
 
     # Showing dropdown menu of the toolbar
     def show_options(self):
@@ -60,7 +53,8 @@ class Menu_Widget(BoxLayout):
                      "on_release": lambda x="Quitter": self.button_callback(x),
                      }
 
-        menu_items = [main_item, settings_item, history_item, logout_item, exit_item]
+        menu_items = [main_item, settings_item,
+                      history_item, logout_item, exit_item]
         self.menu = MDDropdownMenu(
             caller=self.ids.toolbar,
             items=menu_items,
@@ -90,7 +84,7 @@ class Menu_Widget(BoxLayout):
 # Go back to home screen
     def return_to_home(self):
         app = MDApp.get_running_app()
-        app.root.current='Accueil'
+        app.root.current = 'Accueil'
         try:
             self.menu.dismiss()
         except:

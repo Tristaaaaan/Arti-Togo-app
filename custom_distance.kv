@@ -1,3 +1,8 @@
+<Check2@MDCheckbox>:
+    group: 'group2'
+    size_hint: None, None
+    size: dp(48), dp(48)
+
 <DistanceWidget>:
     orientation: 'vertical'
 
@@ -10,88 +15,90 @@
             right_action_items: [["dots-vertical", lambda x: root.show_options()]]
 
     MDBoxLayout:
-        padding: 20
         spacing: 10
         orientation: 'vertical'
+        pos_hint: {'center_x': 0.50, 'center_y': 0.50}
+        size_hint: 1, 1
+        padding: dp(40)
+        # Checks
         MDBoxLayout:
-            # padding: 20
-            size_hint_y: .2
+            orientation: 'vertical'
+            pos_hint: {'center_x': 0.50, 'center_y': 0.50}
+            size_hint_y: None
             MDBoxLayout:
-                Label:
-                    text: "Degree"
-                    halign: 'right'
-                    color: 0,0,0,1
-                CheckBox:
-                    id: degree_checkbox
-                    group: "radio_buttons"
-                    size_hint_x: .2
-                    on_active: root.check_A_B_value()
-            MDBoxLayout:
-                CheckBox:
-                    id: mil_checkbox
-                    group: "radio_buttons"
-                    size_hint_x: .2
-                    active: True
-                    on_active: root.check_A_B_value()
+                orientation: 'horizontal'
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 5
+                    Check2:
+                        id: degree_checkbox
+                        active: True
+                        pos_hint: {'center_x': .5, 'center_y': .5}
 
-                Label:
-                    text: "Mil"
-                    halign: 'left'
-                    color: 0,0,0,1
+                        on_active: root.check_A_B_value()
+                    MDLabel:
+                        text: 'Deg'
+                        size_hint_x: None
+                        font_style: "Caption"
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 5
+                    Check2:
+                        id: mil_checkbox
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+
+                        on_active: root.check_A_B_value()
+                    MDLabel:
+                        text: 'Mil'
+                        font_style: "Caption"
+                        size_hint_x: None
 
         MDBoxLayout:
-            adaptive_height: True
-            GridLayout:
-                cols: 3
-                spacing: 5
-                MDBoxLayout:
-                    adaptive_height: True
-                    Label:
-                        text: 'Dab ='
-                        # font_size: 25
-                        size_hint_x: .3
-                        color: 0,0,0,1
+            orientation: 'vertical'
+            spacing: 10
+            MDTextField:
+                id: dab
+                mode: "rectangle"
+                hint_text: "Dab"
+                input_filter: "float"
 
-                    DataInput:
-                        id: Dab
-                        input_filter: "float"
-                        # font_size: 17
+            MDTextField:
+                id: A
+                mode: "rectangle"
+                hint_text: "A"
+                input_filter: "float"
+                on_text: root.limit_data_input_range(self)
 
-                MDBoxLayout:
-                    adaptive_height: True
-                    Label:
-                        text: 'A ='
-                        # font_size: 25
-                        size_hint_x: .3
-                        color: 0,0,0,1
+            MDTextField:
+                id: B
+                mode: "rectangle"
+                hint_text: "B"
+                input_filter: "float"
+                on_text: root.limit_data_input_range(self)
+            
+            # Outputs
+            MDTextField:
 
-                    DataInput:
-                        id: A
-                        input_filter: "float"
-                        # font_size: 17
-                        on_text: root.limit_data_input_range(self)
+                id: result_Dac
+                mode: "rectangle"
+                input_filter: "float"
+                hint_text: "Dac"
+                disabled: True
+            MDTextField:
 
+                id: result_Dac
+                mode: "rectangle"
+                input_filter: "float"
+                hint_text: "Dac"
+                disabled: True
+        
 
-                MDBoxLayout:
-                    adaptive_height: True
-                    Label:
-                        text: 'B ='
-                        # font_size: 25
-                        size_hint_x: .3
-                        color: 0,0,0,1
-
-                    DataInput:
-                        id: B
-                        input_filter: "float"
-                        # font_size: 17
-                        on_text: root.limit_data_input_range(self)
-
-
+        # Buttons
         MDBoxLayout:
             spacing: 15
             # adaptive_width: True
             pos_hint: {'center_x': .5, 'center_y': .5}
-            size_hint_y: .1
+            size_hint_y: .15
             RectangularElevationButton:
                 id: effacer
                 md_bg_color: (188/255,0,0,1)
@@ -186,39 +193,4 @@
             #     source: 'assets/button.png'
             #     allow_stretch: True
             #     on_release: root.return_to_home()
-
-        GridLayout:
-            cols: 2
-            MDBoxLayout:
-                
-                Label:
-                    text: 'Dac ='
-                    # font_size: 25
-                    size_hint_x: .3
-                    color: 0,0,1,1
-                    bold: True
-
-                Label:
-                    id: result_Dac
-                    text: ""
-                    input_filter: "float"
-                    # font_size: 17
-                    color: 0,0,1,1
-                    bold: True
-
-            MDBoxLayout:
-                Label:
-                    text: 'Dbc ='
-                    # font_size: 25
-                    size_hint_x: .3
-                    color: 0,0,1,1
-                    bold: True
-
-                Label:
-                    id: result_Dbc
-                    text: ""
-                    input_filter: "float"
-                    # font_size: 17
-                    color: 0,0,1,1
-                    bold: True
 

@@ -26,15 +26,15 @@ class RectangularElevationButton(
 class LoginPage(Screen):
 
     def login(self, username, password):
-        if self.check_password(username, password):
-            app = MDApp.get_running_app()
-            app.root.current = 'Accueil'
-        else:
-            self.ids.error_label.text = 'Incorrect User ID or Password.'
-            self.ids.error_label.md_bg_color = (254/255, 219/255, 223/255, 1)
-            self.ids.user_password.text = ''
+       # if self.check_password(username, password):
+        app = MDApp.get_running_app()
+        app.root.current = 'Accueil'
+        # else:
+        #     self.ids.error_label.text = 'Incorrect User ID or Password.'
+        #     self.ids.error_label.md_bg_color = (254/255, 219/255, 223/255, 1)
+        #     self.ids.user_password.text = ''
 
-            Clock.schedule_once(self.reset_error_label_bg_color, 3)
+        #     Clock.schedule_once(self.reset_error_label_bg_color, 3)
 
     def reset_error_label_bg_color(self, dt):
         self.ids.error_label.md_bg_color = (1, 1, 1, 1)
