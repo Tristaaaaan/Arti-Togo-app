@@ -1,0 +1,103 @@
+<Step2Form>:
+    orientation: "vertical"
+    MDBoxLayout:
+        spacing: 10
+        orientation: 'vertical'
+        pos_hint: {'center_x': 0.50, 'center_y': 0.50}
+        size_hint: 1, 1
+        padding: dp(40)
+
+        MDTextField:
+            id: pD1
+            mode: "rectangle"
+            input_filter: "float"
+            hint_text: "pD"
+            text: str(root.pD1)
+            input_filter: "float"
+            on_text: root.pD1 = float(self.text)
+
+        MDTextField:
+            id: pF1
+            mode: "rectangle"
+            input_filter: "float"
+            hint_text: "pF"
+            text: str(root.pF1)
+            input_filter: "float"
+            on_text: root.pF1 = float(self.text)
+
+
+        MDTextField:
+            id: pG1
+            mode: "rectangle"
+            input_filter: "float"
+            hint_text: "pG"
+            text: str(root.pG1)
+            input_filter: "float"
+            on_text: root.pD1 = float(self.text)
+        
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: 8
+                MDBoxLayout:
+                    spacing: 8
+                    MDTextField:
+                        id: result_BCx1
+                        mode: "rectangle"
+                        hint_text: "BCx1"
+                        disabled: True
+                    MDTextField:
+                        id: result_Fx1
+                        mode: "rectangle"
+                        hint_text: "Fx1"
+                        disabled: True
+
+                MDBoxLayout:
+                    spacing: 8
+                    MDTextField:
+                        id: result_BCrc1
+                        mode: "rectangle"
+                        hint_text: "BCrk"
+                        disabled: True
+
+                    MDTextField:
+                        id: result_Frc1
+                        mode: "rectangle"
+                        hint_text: "Frc1"
+                        disabled: True
+
+        MDBoxLayout:
+            #adaptive_height: True
+            spacing: 1
+            #adaptive_width: True
+            #size_hint_x: 0.8
+            size_hint_y: .5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            RectangularElevationButton:
+                id: validation
+                # md_bg_color: (0,188/255,0,1)
+                # elevation: 4
+                # shadow_offset: 0, 6
+                # size_hint_x: .9
+                # size_hint_y: .2
+                # radius: 13
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    # background_down: ''
+                    # background_color: (0,0,0,0)
+                    # color: 1,1,1,1
+                    color: 0,0,0,1
+                    pos: validation.pos
+                    size: validation.size
+                    halign: 'center'
+                    font_size: 16
+                    text: "Calculate"
+                    on_release: root.calculate_step2()

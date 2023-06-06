@@ -1,0 +1,83 @@
+<Step1Form>:
+    orientation: "vertical"
+    MDBoxLayout:
+        spacing: 10
+        orientation: 'vertical'
+        pos_hint: {'center_x': 0.50, 'center_y': 0.50}
+        size_hint: 1, 1
+        padding: dp(40)
+
+        MDTextField:
+            id: pD
+            mode: "rectangle"
+            input_filter: "float"
+            hint_text: "pD"
+            text: str(root.pD)
+            input_filter: "float"
+            on_text: root.pD = float(self.text)
+
+        MDTextField:
+            id: pF
+            mode: "rectangle"
+            input_filter: "float"
+            hint_text: "pD"
+            text: str(root.pF)
+            input_filter: "float"
+            on_text: root.pD = float(self.text)
+
+        MDTextField:
+            id: pG
+            mode: "rectangle"
+            input_filter: "float"
+            hint_text: "pG"
+            text: str(root.pG)
+            input_filter: "float"
+            on_text: root.pD = float(self.text)
+
+        MDBoxLayout:
+            spacing: 5
+            MDTextField:
+                id: result_BCrk
+                mode: "rectangle"
+                hint_text: "BCrk"
+                disabled: True
+
+            MDTextField:
+                id: result_Frk
+                mode: "rectangle"
+                hint_text: "Frk"
+                disabled: True
+
+        MDBoxLayout:
+            #adaptive_height: True
+            spacing: 1
+            #adaptive_width: True
+            #size_hint_x: 0.8
+            size_hint_y: .5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            RectangularElevationButton:
+                id: validation
+                # md_bg_color: (0,188/255,0,1)
+                # elevation: 4
+                # shadow_offset: 0, 6
+                size_hint_x: .9
+                size_hint_y: 1
+                # radius: 13
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x,self.y,self.width,self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    # background_down: ''
+                    # background_color: (0,0,0,0)
+                    # color: 1,1,1,1
+                    color: 0,0,0,1
+                    pos: validation.pos
+                    size: validation.size
+                    halign: 'center'
+                    font_size: 16
+                    text: "Calculate"
+                    on_release: root.calculate_step1()

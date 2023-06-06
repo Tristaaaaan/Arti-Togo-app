@@ -1,0 +1,209 @@
+<Check@MDCheckbox>:
+    group: 'group1'
+    size_hint: None, None
+    size: dp(48), dp(48)
+    
+<CoordonneeWidget>:
+    orientation: 'vertical'
+
+    ToolBarSpace:
+        MDTopAppBar:
+            id: toolbar
+            elevation: 0
+            title: 'Calcul de coordonnee'
+            left_action_items: [["arrow-left", lambda x: app.go_to_previous(root)]]
+            right_action_items: [["dots-vertical", lambda x: root.show_options()]]
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, .6
+        spacing: 20
+        padding: dp(40)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        # Checkbox
+        MDBoxLayout:
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            orientation: 'horizontal'
+            size_hint_y: .1
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: 5
+                Check:
+                    id: degree_checkbox
+                    active: True
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    on_release: 
+                        self.active = True if self.active else not self.active
+                        root.check_aab_value()
+
+                MDLabel:
+                    text: 'Deg'
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    size_hint_x: None
+                    font_style: "Caption"
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: 5
+                Check:
+                    on_release:
+                        self.active = True if self.active else not self.active
+                MDLabel:
+                    text: 'Mil'
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    font_style: "Caption"
+                    size_hint_x: None
+
+        # TextFields
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            size_hint_y: .4
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: 8
+                size_hint_y: .1
+                MDTextField:
+                    id: Xa
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "Xa"
+
+                MDTextField:
+                    id: Ya
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "Ya"
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: 8
+                size_hint_y: .1
+                MDTextField:
+                    id: Ha
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "Ha"
+
+                MDTextField:
+                    id: aab
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "aab"
+            MDBoxLayout:
+                spacing: 8
+                size_hint_y: .1
+
+                orientation: 'horizontal'
+                MDTextField:
+                    id: Dab
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "Dab"
+
+                MDTextField:
+                    id: e
+                    mode: "rectangle"
+                    input_filter: "float"
+                    hint_text: "e"
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: 15
+            pos_hint: {'center_x': .5, 'center_y': 5}
+            size_hint_y: .2
+            MDTextField:
+                id: result_Xb
+            
+                mode: "rectangle"
+                input_filter: "float"
+                hint_text: "Xb"
+                disabled: True
+        
+            MDTextField:
+                
+                id: result_Yb
+                mode: "rectangle"
+                input_filter: "float"
+                hint_text: "Yb"
+                disabled: True
+            MDTextField:
+
+                id: result_Hb
+                mode: "rectangle"
+                input_filter: "float"
+                hint_text: "Hb"
+                disabled: True
+
+
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: 8
+            size_hint_y: .15
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            RectangularElevationButton:
+                id: effacer
+                md_bg_color: (188/255,0,0,1)
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    # background_down: ''
+                    # background_color: (0,0,0,0)
+                    # color: 1,1,1,1
+                    color: 0,0,0,1
+                    pos: effacer.pos
+                    size: effacer.size
+                    halign: 'center'
+                    font_size: 16
+                    text: "Effacer"
+                    on_release: root.clear_fields()
+            
+            RectangularElevationButton:
+                id: validation
+                md_bg_color: (0,188/255,0,1)
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+        
+                    color: 0,0,0,1
+                    pos: validation.pos
+                    size: validation.size
+                    halign: 'center'
+                    font_size: 16
+                    text: "Valider"
+                    on_release: root.validate('+')
+
+            RectangularElevationButton:
+                id: retour
+                md_bg_color: (0,0,0,1)
+
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+                Button:
+                    background_normal: 'button_background.png'
+                    # background_down: ''
+                    # background_color: (0,0,0,0)
+                    # color: 1,1,1,1
+                    color: 0,0,0,1
+                    pos: retour.pos
+                    size: retour.size
+                    halign: 'center'
+                    font_size: 16
+                    text: "Retour"
+                    on_release: root.return_to_home()
