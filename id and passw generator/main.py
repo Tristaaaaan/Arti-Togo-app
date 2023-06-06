@@ -31,6 +31,7 @@ class FirstWindow(Screen):
     Builder.load_file('firstwindow.kv')
 
     def generate(self):
+        self.ids.generated.md_bg_color = [1, 1, 1, 1]
         self.ids.user_id.text = uid.generate_id()
 
         self.ids.user_password.text = passw.generate_passw(
@@ -50,7 +51,7 @@ class FirstWindow(Screen):
         self.ids.user_password.text = ''
 
     def copy(self):
-
+        self.ids.generated.md_bg_color = [1, 1, 1, 1]
         if self.ids.user_password.text != '':
             userpassw = "User ID: " + self.ids.user_id.text + \
                 " Password: " + self.ids.user_password.text
