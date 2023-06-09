@@ -30,7 +30,6 @@ class LoginPage(Screen):
 
     def on_kv_post(self, base_widget):
         if len(db.allAcc()) == 0:
-            print(len(db.allAcc()))
             self.user_id.text = generateid.generate_id()
         else:
             self.user_password.passw.disabled = True

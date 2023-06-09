@@ -32,15 +32,22 @@ class FirstWindow(Screen):
 
     def generate(self):
         self.ids.generated.md_bg_color = [1, 1, 1, 1]
-        self.ids.user_id.text = uid.generate_id()
 
-        self.ids.user_password.text = passw.generate_passw(
-            self.ids.user_id.text)
+        try:
+            if self.ids.user_id.text != '':
 
-        self.ids.generated.text = 'User ID and Password has been generated.'
-        self.ids.generated.md_bg_color = [152/255, 251/255, 152/255, 1]
+                user_id = self.ids.user_id.text
 
-        Clock.schedule_once(self.generated_label, 3)
+                self.ids.user_password.text = passw.generate_passw(user_id)
+
+                self.ids.generated.text = 'Password has been generated.'
+                self.ids.generated.md_bg_color = [152/255, 251/255, 152/255, 1]
+
+                Clock.schedule_once(self.generated_label, 3)
+            else:
+                self.error_dialog("Kindly enter a User ID.")
+        except:
+            pass
 
     def generated_label(self, dt):
         self.ids.generated.md_bg_color = (1, 1, 1, 1)
@@ -53,11 +60,11 @@ class FirstWindow(Screen):
     def copy(self):
         self.ids.generated.md_bg_color = [1, 1, 1, 1]
         if self.ids.user_password.text != '':
-            userpassw = "User ID: " + self.ids.user_id.text + \
-                " Password: " + self.ids.user_password.text
+            userpassw = "User Password: " + self.ids.user_password.text
+
             pyperclip.copy(userpassw)
 
-            self.ids.generated.text = 'User ID and Password has been copied.'
+            self.ids.generated.text = 'Password has been copied.'
 
             self.ids.generated.md_bg_color = [255/255, 253/255, 156/255, 1]
 
