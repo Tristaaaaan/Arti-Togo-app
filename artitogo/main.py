@@ -128,6 +128,7 @@ class ArtiCalculatrice(MDApp):
         self.screens_manager = Builder.load_file('screen_manager.kv')
 
     def build(self):
+
         return self.screens_manager
 
     # Go to the previous screen

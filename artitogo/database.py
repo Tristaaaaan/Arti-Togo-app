@@ -47,8 +47,16 @@ class Database:
 
     def allAcc(self):
 
-        self.users.execute("SELECT user_id FROM users")
+        self.users.execute("SELECT * FROM users")
 
         data = self.users.fetchall()
+
+        return data
+
+    def get_acc(self):
+
+        self.users.execute("SELECT * FROM users")
+
+        data = self.users.fetchone()
 
         return data
